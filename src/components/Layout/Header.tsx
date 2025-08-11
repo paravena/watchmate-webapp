@@ -9,26 +9,26 @@ export function Header() {
   return (
     <header className="border-b">
       <div className="container mx-auto p-4 flex items-center justify-between">
-        <Link to="/movies" className="font-bold">
+        <Link to="/movies" className="font-bold text-blue-600 underline">
           {import.meta.env.VITE_APP_NAME ?? 'Watchmate Web'}
         </Link>
         <nav className="flex items-center gap-4">
-          <NavLink to="/movies" className={({ isActive }) => (isActive ? 'font-semibold' : '')}>
+          <NavLink to="/movies" className={({ isActive }) => `text-blue-600 underline ${isActive ? 'font-semibold' : ''}`}>
             Movies
           </NavLink>
-          <NavLink to="/watchlists" className={({ isActive }) => (isActive ? 'font-semibold' : '')}>
+          <NavLink to="/watchlists" className={({ isActive }) => `text-blue-600 underline ${isActive ? 'font-semibold' : ''}`}>
             Watchlists
           </NavLink>
           {!isAuthed ? (
             <>
-              <Link to="/login">Login</Link>
-              <Link to="/signup">Signup</Link>
+              <Link to="/login" className="text-blue-600 underline">Login</Link>
+              <Link to="/signup" className="text-blue-600 underline">Signup</Link>
             </>
           ) : (
             <div className="flex items-center gap-2">
               <span className="text-sm text-gray-600">{user?.username ?? 'User'}</span>
               <button
-                className="px-3 py-1 rounded bg-gray-100 hover:bg-gray-200"
+                className="px-3 py-1 rounded bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-transparent"
                 onClick={() => {
                   logout()
                   navigate('/login')

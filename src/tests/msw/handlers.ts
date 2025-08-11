@@ -11,6 +11,6 @@ export const handlers = [
     return new HttpResponse('Unauthorized', { status: 401 })
   }),
   http.get(`${API}/api/movies/`, () => {
-    return HttpResponse.json({ count: 1, next: null, previous: null, results: [{ id: 1, title: 'Mock Movie' }] })
+    return HttpResponse.json({ count: 1, next: null, previous: null, results: [{ id: 1, title: 'Mock Movie', description: 'A mocked description' }] })
   }),
 ]

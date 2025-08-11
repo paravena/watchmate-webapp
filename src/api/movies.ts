@@ -1,5 +1,5 @@
 import { api } from './axios'
-import type { Movie, Paginated } from './types'
+import type { Movie, Paginated, MovieDetail } from './types'
 
 export async function fetchMovies(page?: number) {
   const url = page ? `/api/movies/?page=${page}` : '/api/movies/'
@@ -8,12 +8,12 @@ export async function fetchMovies(page?: number) {
 }
 
 export async function fetchMovie(id: string | number) {
-  const { data } = await api.get<Movie>(`/api/movies/${id}/`)
+  const { data } = await api.get<MovieDetail>(`/api/movies/${id}/`)
   return data
 }
 
-export async function rateMovie(id: string | number, rating: number) {
-  const { data } = await api.post(`/api/movies/${id}/rate/`, { rating })
+export async function rateMovie(id: string | number, score: number) {
+  const { data } = await api.post(`/api/movies/${id}/rate/`, { score })
   return data
 }
 

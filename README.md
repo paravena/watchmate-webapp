@@ -39,6 +39,6 @@ The app expects the backend to be available at `VITE_API_BASE_URL`.
 - Axios instance reads `VITE_API_BASE_URL` and attaches `Authorization: Bearer <access>`.
 - 401 responses trigger a refresh flow (`POST /api/auth/token/refresh/`) with queuing of pending requests.
 - React Query handles server cache, fetching, pagination, and invalidation.
-- Tailwind CSS for minimal styles.
+- Tailwind CSS utilities only; no custom CSS rules. Global stylesheet (src/styles/index.css) contains only Tailwind directives; body light/dark classes are set in index.html.
 - Swagger for exploring endpoints: http://localhost:8000/swagger
 

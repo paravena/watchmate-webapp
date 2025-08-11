@@ -15,7 +15,8 @@ export function SignupPage() {
     e.preventDefault()
     setError(null)
     try {
-      const resp = await signup({ username, email, password })
+      const payload = email ? { username, email, password } : { username, password }
+      const resp = await signup(payload as any)
       setUser(resp.user)
       navigate('/movies', { replace: true })
     } catch (err: any) {
@@ -29,21 +30,21 @@ export function SignupPage() {
       <form onSubmit={onSubmit} className="space-y-3">
         <label className="block">
           <span className="block text-sm">Username</span>
-          <input className="w-full border rounded p-2" value={username} onChange={(e) => setUsername(e.target.value)} required />
+          <input className="w-full border rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-transparent" value={username} onChange={(e) => setUsername(e.target.value)} required />
         </label>
         <label className="block">
-          <span className="block text-sm">Email</span>
-          <input className="w-full border rounded p-2" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+          <span className="block text-sm">Email (optional)</span>
+          <input className="w-full border rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-transparent" type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@example.com" />
         </label>
         <label className="block">
           <span className="block text-sm">Password</span>
-          <input className="w-full border rounded p-2" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+          <input className="w-full border rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-transparent" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
         </label>
         {error && <p role="alert" className="text-red-600 text-sm">{error}</p>}
-        <button className="w-full bg-blue-600 text-white py-2 rounded">Create account</button>
+        <button className="w-full bg-blue-600 text-white py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-transparent">Create account</button>
       </form>
       <p className="mt-4 text-sm">
-        Have an account? <Link to="/login">Log in</Link>
+        Have an account? <Link to="/login" className="text-blue-600 underline">Log in</Link>
       </p>
     </div>
   )

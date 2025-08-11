@@ -9,11 +9,17 @@ export async function login(payload: LoginInput): Promise<Tokens> {
   return data
 }
 
-export async function signup(payload: SignupInput): Promise<{ user: User; tokens?: Tokens }> {
+export async function signup(payload: SignupInput): Promise<{ user: User; access?: string; refresh?: string; tokens?: Tokens }> {
   const { data } = await api.post('/api/auth/signup/', payload)
+
+  // Accept either top-level { access, refresh } or { tokens: { access, refresh } }
   const tokens = (data as any).tokens as Tokens | undefined
-  if (tokens) {
-    useAuthStore.getState().setTokens(tokens.access, tokens.refresh)
+  const access = (data as any).access as string | undefined
+  const refresh = (data as any).refresh as string | undefined
+  const a = tokens?.access ?? access
+  const r = tokens?.refresh ?? refresh
+  if (a && r) {
+    useAuthStore.getState().setTokens(a, r)
   }
   if ((data as any).user) {
     useAuthStore.getState().setUser((data as any).user as User)

@@ -38,7 +38,7 @@ export function MovieDetailPage() {
         <label>
           Rate:
           <select
-            className="ml-2 border rounded p-1"
+            className="ml-2 border rounded p-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-transparent"
             value={rating}
             onChange={(e) => setRating(Number(e.target.value))}
           >
@@ -49,7 +49,7 @@ export function MovieDetailPage() {
             ))}
           </select>
         </label>
-        <button className="px-3 py-1 rounded bg-blue-600 text-white">Submit</button>
+        <button className="px-3 py-1 rounded bg-blue-600 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-transparent">Submit</button>
         {rate.isError && <span className="text-red-600 ml-2">Failed</span>}
         {rate.isSuccess && <span className="text-green-600 ml-2">Thanks!</span>}
       </form>

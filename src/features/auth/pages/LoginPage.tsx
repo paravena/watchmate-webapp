@@ -32,7 +32,7 @@ export function LoginPage() {
         <label className="block">
           <span className="block text-sm">Username</span>
           <input
-            className="w-full border rounded p-2"
+            className="w-full border rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-transparent"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
@@ -41,7 +41,7 @@ export function LoginPage() {
         <label className="block">
           <span className="block text-sm">Password</span>
           <input
-            className="w-full border rounded p-2"
+            className="w-full border rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-transparent"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -49,10 +49,10 @@ export function LoginPage() {
           />
         </label>
         {error && <p role="alert" className="text-red-600 text-sm">{error}</p>}
-        <button className="w-full bg-blue-600 text-white py-2 rounded">Sign in</button>
+        <button className="w-full bg-blue-600 text-white py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-transparent">Sign in</button>
       </form>
       <p className="mt-4 text-sm">
-        No account? <Link to="/signup">Create one</Link>
+        No account? <Link to="/signup" className="text-blue-600 underline">Create one</Link>
       </p>
     </div>
   )

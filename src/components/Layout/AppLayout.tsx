@@ -7,7 +7,7 @@ export function AppLayout({ children }: PropsWithChildren) {
       <Header />
       <main className="container mx-auto p-4 flex-1">{children}</main>
       <footer className="p-4 text-center text-sm text-gray-500">
-        <a href="http://localhost:8000/swagger" target="_blank" rel="noreferrer">
+        <a href="http://localhost:8000/swagger" target="_blank" rel="noreferrer" className="text-blue-600 underline">
           API Swagger Docs
         </a>
       </footer>
