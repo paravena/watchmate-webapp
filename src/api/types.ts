@@ -4,6 +4,8 @@ export type Movie = {
   id: number
   title: string
   description: string
+  poster_url?: string | null
+  avg_rating?: number
 }
 
 export type Genre = {

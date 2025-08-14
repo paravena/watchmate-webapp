@@ -3,22 +3,29 @@ import { useAuthStore } from '@/store/auth.store'
 
 export function Header() {
   const navigate = useNavigate()
-  const { access, user, logout } = useAuthStore()
+  const { access, user, logout, is_superuser } = useAuthStore()
   const isAuthed = Boolean(access)
 
   return (
     <header className="border-b">
       <div className="container mx-auto p-4 flex items-center justify-between">
-        <Link to="/movies" className="font-bold text-blue-600 underline">
-          {import.meta.env.VITE_APP_NAME ?? 'Watchmate Web'}
+        <Link to="/movies" className="inline-flex items-center">
+          <img src="/logo.svg" alt={import.meta.env.VITE_APP_NAME ?? 'Watchmate Web'} className="h-8 w-8" />
         </Link>
         <nav className="flex items-center gap-4">
           <NavLink to="/movies" className={({ isActive }) => `text-blue-600 underline ${isActive ? 'font-semibold' : ''}`}>
             Movies
           </NavLink>
-          <NavLink to="/watchlists" className={({ isActive }) => `text-blue-600 underline ${isActive ? 'font-semibold' : ''}`}>
-            Watchlists
-          </NavLink>
+          {isAuthed && (
+            <NavLink to="/watchlists" className={({ isActive }) => `text-blue-600 underline ${isActive ? 'font-semibold' : ''}`}>
+              Watchlists
+            </NavLink>
+          )}
+          {isAuthed && is_superuser && (
+            <NavLink to="/movies/new" className={({ isActive }) => `text-blue-600 underline ${isActive ? 'font-semibold' : ''}`}>
+              Create Movie
+            </NavLink>
+          )}
           {!isAuthed ? (
             <>
               <Link to="/login" className="text-blue-600 underline">Login</Link>

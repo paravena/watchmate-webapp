@@ -26,3 +26,19 @@ export async function fetchGenres() {
   const { data } = await api.get('/api/genres/')
   return data
 }
+
+export async function updateMovie(
+  id: string | number,
+  payload: Partial<{
+    poster_url: string | null
+    genres: number[]
+    platforms: number[]
+    title: string
+    description: string
+    release_date: string | null
+    duration: number | null
+  }>,
+) {
+  const { data } = await api.patch<MovieDetail>(`/api/movies/${id}/`, payload)
+  return data
+}
